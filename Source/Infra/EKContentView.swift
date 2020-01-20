@@ -732,6 +732,14 @@ extension EKContentView {
         }
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if attributes.entryInteraction.isResponsive {
+            return super.hitTest(point, with: event)
+        } else {
+            return nil
+        }
+    }
+    
     // MARK: UIResponder
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
