@@ -670,7 +670,8 @@ extension EKContentView {
     
     private func calculateLogarithmicOffset(forOffset offset: CGFloat, currentTranslation: CGFloat) {
         if attributes.position.isTop {
-            inConstraint.constant = verticalLimit * (1 + log10(offset / verticalLimit))
+            let normalizedLimit = verticalLimit == 0 ? 1 : verticalLimit
+            inConstraint.constant = verticalLimit * (1 + log10(offset / normalizedLimit))
         } else {
             let offset = Swift.abs(offset) + verticalLimit
             let addition: CGFloat = abs(currentTranslation) < 2 ? 0 : 1
